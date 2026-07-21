@@ -4,6 +4,7 @@ import com.brainz.sms_backend.Classroom.ClassRoom;
 import com.brainz.sms_backend.Guardian.Guardian;
 import jakarta.persistence.*;
 import lombok.*;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -16,7 +17,16 @@ public class Student {
 
     private String firstName;
     private String lastName;
-    private int age;
+    private String email;
+    private String phone;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
+    private LocalDate dateOfBirth;
+    private LocalDate enrollmentDate;
+
+    @Enumerated(EnumType.STRING)
+    private StudentStatus status;
 
     @ManyToOne
     private Guardian guardian;

@@ -2,9 +2,7 @@ package com.brainz.sms_backend.Subject;
 
 import com.brainz.sms_backend.Teacher.Teacher;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Data
@@ -16,8 +14,8 @@ public class Subject {
     private Long id;
     private String name;
     private String code;
+    private String description;
 
     @ManyToOne
-    private Teacher teacher; // Optional teacher
+    private Teacher teacher;
 }
-

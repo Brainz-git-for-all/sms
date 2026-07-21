@@ -1,12 +1,8 @@
 package com.brainz.sms_backend.Classroom;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.brainz.sms_backend.Teacher.Teacher;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Data
@@ -16,6 +12,17 @@ public class ClassRoom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name; // e.g., "Grade 10A"
+    private String name;
     private String room;
+    private String academicYear;
+    private Integer capacity;
+
+    @Enumerated(EnumType.STRING)
+    private ClassRoomStatus status;
+
+    @Enumerated(EnumType.STRING)
+    private ActiveStatus active;
+
+    @ManyToOne
+    private Teacher classTeacher;
 }
