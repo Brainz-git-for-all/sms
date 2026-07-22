@@ -7,7 +7,12 @@ package com.brainz.sms_backend.auth;
 //   String password  — @NotBlank
 
 import jakarta.validation.constraints.NotBlank;
+import lombok.*;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class LoginRequest {
     // TODO: add Lombok annotations on the class
     // TODO: add fields with validation annotations
