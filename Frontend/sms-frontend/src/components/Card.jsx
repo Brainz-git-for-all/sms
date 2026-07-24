@@ -17,12 +17,10 @@
 export default function Card({ title, children, className }) {
     // TODO: add props and return the JSX structure
 
-    return(
-       
-         <div className="bg-white rounded-xl shadow p-6 {className}">
-         {title && <h3 className="...">{title}</h3>}
-         {children}
-     
+    return (
+        <div className={`bg-white rounded-xl shadow p-6 ${className || ''}`}>
+            {title && <h3 className="text-lg font-bold mb-4">{title}</h3>}
+            {children}
         </div>
     )
 

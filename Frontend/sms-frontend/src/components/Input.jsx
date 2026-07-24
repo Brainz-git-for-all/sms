@@ -18,16 +18,17 @@
 //
 // WHEN DONE: tell me "I finished Input.jsx" and paste your code.
 
-export default function Input({label,type,value,onchange,error,placeholder}) {
-    // TODO: add props and return the JSX structure above
-    <div>
-        <label >{label}</label>
-        <input 
-        type={type}
-        onChange={onchange}
-        value={value}
-        placeholder={placeholder}
-        ></input>
-        {error && <p>{error}</p>}
-    </div>
+export default function Input({label,type,value,onChange,error,placeholder}) {
+    return (
+        <div>
+            <label>{label}</label>
+            <input
+                type={type}
+                onChange={onChange}
+                value={value}
+                placeholder={placeholder}
+            ></input>
+            {error && <p>{error}</p>}
+        </div>
+    )
 }
