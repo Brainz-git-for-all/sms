@@ -28,7 +28,7 @@ package com.brainz.sms_backend.auth;
 
 
 import jakarta.persistence.*;
-import org.jspecify.annotations.Nullable;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -36,8 +36,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-@Entity
-@Table(name = "app_users")
+@Getter                          // Lombok: generates getters for all fields
+@Setter                          // Lombok: generates setters for all fields
+@Builder                         // Lombok: enables AppUser.builder()...build() pattern
+@NoArgsConstructor               // Lombok: generates empty constructor — JPA needs this to create objects from DB rows
+@AllArgsConstructor              // Lombok: generates constructor with all fields — @Builder needs this internally
+@Entity                          // JPA: this class maps to a database table
+@Table(name = "app_users")       // JPA: the table name in PostgreSQL will be "app_users"
 public class AppUser implements UserDetails {
 
     @Id
@@ -95,7 +100,4 @@ public class AppUser implements UserDetails {
     public boolean isEnabled() {
         return this.enabled;
     }
-    // TODO: add class-level annotations
-    // TODO: add fields
-    // TODO: implement all UserDetails methods
 }

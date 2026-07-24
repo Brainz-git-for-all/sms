@@ -6,6 +6,7 @@ import com.brainz.sms_backend.Grade.GradeRepository;
 import com.brainz.sms_backend.Grade.GradeResponse;
 import com.brainz.sms_backend.Guardian.Guardian;
 import com.brainz.sms_backend.Guardian.GuardianRepository;
+import com.brainz.sms_backend.auth.AppUserRepository;
 import com.brainz.sms_backend.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ public class StudentService {
     private final GuardianRepository guardianRepository;
     private final ClassRoomRepository classRoomRepository;
     private final GradeRepository gradeRepository;
+    private final AppUserRepository appUserRepository;
 
     public List<StudentResponse> getAll() {
         return studentRepository.findAll().stream()
@@ -36,6 +38,16 @@ public class StudentService {
     public List<GradeResponse> getGrades(Long studentId) {
         studentRepository.findById(studentId)
                 .orElseThrow(() -> new ResourceNotFoundException("Student not found: " + studentId));
+        return gradeRepository.findByStudentId(studentId).stream()
+                .map(GradeResponse::from).collect(Collectors.toList());
+    }
+
+    public List<GradeResponse> getMyGrades(String username) {
+        Long studentId = appUserRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found: " + username))
+                .getStudentId();
+        if (studentId == null)
+            throw new ResourceNotFoundException("No student profile linked to account: " + username);
         return gradeRepository.findByStudentId(studentId).stream()
                 .map(GradeResponse::from).collect(Collectors.toList());
     }
