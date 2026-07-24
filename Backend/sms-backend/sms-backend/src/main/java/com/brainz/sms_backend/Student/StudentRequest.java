@@ -15,12 +15,12 @@ public class StudentRequest {
     @Email(message = "Invalid email")
     private String email;
     private String phone;
-    @NotBlank(message = "Gender is required")
-    private String gender;
+    @NotNull(message = "Gender is required")
+    private Gender gender;
     @NotNull(message = "Date of birth is required")
     private LocalDate dateOfBirth;
     private LocalDate enrollmentDate;
-    private String status;
+    private StudentStatus status;
     private Long guardianId;
     private Long currentClassId;
 }

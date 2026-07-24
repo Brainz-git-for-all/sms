@@ -56,7 +56,7 @@ public class StudentService {
         Student s = new Student();
         mapToEntity(request, s);
         if (s.getEnrollmentDate() == null) s.setEnrollmentDate(LocalDate.now());
-        if (s.getStatus() == null) s.setStatus("ACTIVE");
+        if (s.getStatus() == null) s.setStatus(StudentStatus.ACTIVE);
         return StudentResponse.from(studentRepository.save(s));
     }
 
